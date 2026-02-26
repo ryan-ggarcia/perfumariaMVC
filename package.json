@@ -1,0 +1,16 @@
+{
+  "name": "projetoperfume",
+  "version": "1.0.0",
+  "description": "Loja de perfumaria",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node server.js"
+  },
+  "author": "Ryan Fidelis",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^4.0.1",
+    "express": "^5.2.1"
+  }
+}
