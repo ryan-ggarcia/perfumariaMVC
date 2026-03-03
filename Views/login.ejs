@@ -1,0 +1,70 @@
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .body {
+       
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        height: 400px;
+        width: 25%;
+        padding: 10px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        border-radius: 18px;
+        color: aliceblue;
+        justify-content: space-evenly;
+        background-color: #C3C49E;
+    }
+
+    form div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    label {
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    input {
+        padding: 10px 15px;
+        border-radius: 18px;
+        border: none;
+        outline: none;
+    }
+
+    input:focus {
+        outline: 1px solid #cfd6ea;
+    }
+
+    .img {
+        border: 1px solid black;
+    }
+</style>
+
+<div class="body">
+    <div>
+        <img src="" alt="">
+    </div>
+    <div>
+        <h2>Bem-vindo de volta!</h2>
+        <form action="">
+            <div>
+                <label for="text">Email</label>
+                <input type="text" name="email">
+            </div>
+            <div>
+                <label for="text">Senha</label>
+                <input type="password" name="senha">
+            </div>
+            <button>enviar</button>
+        </form>
+    </div>
+</div>

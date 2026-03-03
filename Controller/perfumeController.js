@@ -8,6 +8,7 @@ class perfumeController{
         res.render('Perfumes', {listaPerfumes})
     }
     cadastrar(req,res){
+        // res.render('cadPerfumes',{layout:false})
         res.render('cadPerfumes')
     }
     efetuarCad(req,res){
