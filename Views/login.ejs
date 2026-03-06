@@ -1,70 +1,85 @@
 <style>
-    * {
+    *{
         padding: 0;
         margin: 0;
         box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-
-    .body {
-       
-    }
-
-    form {
+    body{
+        background: linear-gradient(225deg, hsla(38, 24%, 26%, 1) 0%, hsla(44, 29%, 44%, 1) 100%);
+        height: 100%;
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        height: 400px;
-        width: 25%;
-        padding: 10px;
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-        border-radius: 18px;
-        color: aliceblue;
-        justify-content: space-evenly;
-        background-color: #C3C49E;
+        flex-direction: row;
+       align-items: center;
+       justify-content: space-evenly;
     }
-
-    form div {
+    .img-login{
+        height: 80%;
+        width: 50%;
+    }
+    .img-login img{
+        height: 100%;
+        width: 50%;
+        border-radius: 24px;
+    }
+    form{
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
+        background-color: #D6C69A;
+        height: 400px;
+        width: 300px;
+        border-radius: 24px;
+        gap: 2rem;
     }
-
-    label {
-        font-size: 18px;
-        font-weight: 600;
+    form div{
+        display: flex;
+        flex-direction: column;
     }
-
-    input {
-        padding: 10px 15px;
-        border-radius: 18px;
+    input{
+        height: 30px;
+        width: 200px;
+        border-radius: 8px;
         border: none;
+        padding-left: 8px;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    }
+    input:focus{
         outline: none;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
     }
-
-    input:focus {
-        outline: 1px solid #cfd6ea;
+    div button{
+        height: 40px;
+        width: 100px;
+        border-radius: 8px;
+        border: none;
+        background-color: #C9B17A;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+        color: aliceblue;
     }
-
-    .img {
-        border: 1px solid black;
+    div button:hover{
+        background-color: #8d805b;
     }
 </style>
 
-<div class="body">
-    <div>
-        <img src="" alt="">
+<body>
+    <div class="img-login">
+        <img src="/img/img-login.jpg" alt="">
     </div>
-    <div>
-        <h2>Bem-vindo de volta!</h2>
-        <form action="">
-            <div>
-                <label for="text">Email</label>
-                <input type="text" name="email">
-            </div>
-            <div>
-                <label for="text">Senha</label>
-                <input type="password" name="senha">
-            </div>
-            <button>enviar</button>
-        </form>
-    </div>
-</div>
+    <form action="">
+        <div>
+            <label for="text">Email</label>
+            <input type="text" name="email" id="email">
+        </div>
+        <div>
+            <label for="text">Senha</label>
+            <input type="password" name="senha" id="senha">
+        </div>
+        <div>
+            <button>Entrar</button>
+        </div>
+    </form>
+</body>
