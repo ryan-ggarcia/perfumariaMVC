@@ -1,13 +1,19 @@
-
-<link rel="stylesheet" href="/css/styles.css">
-    <nav>
-        <span>Ryan Perfumes</span>
-       <ul>
-            <li><a href="/">home</a></li>
-            <li><a href="/Perfumes">Perfumes</a></li>
-            <li><a href="/Perfumes/cadastro">Cadastrar Perfume</a></li>
-       </ul>
-    </nav>
+<link rel="stylesheet" href="/css/layout.css">
+<nav>
+    <div class="links-nav">
+       <a href="/home"><span>RYAN PERFUMES</span></a>
+    </div>
+    <div class="links-nav">
+        <input type="search" placeholder="Buscar.....">
+        <a href="/Perfumes">Produtos</a>
+        <a href="/sobre">Sobre nós</a>
+        <a href="/contato">Contato</a>
+    </div>
+    <div class="links-nav">
+        <a href="/login">Login</a>
+        <a href="/carrinho"><img src="/assets/carrinho.png" alt=""></a>
+    </div>
+</nav>
 
 <section>
     <%- body%>
