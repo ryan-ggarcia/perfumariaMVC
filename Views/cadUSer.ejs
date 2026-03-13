@@ -4,71 +4,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style-login.css">
+    <link rel="stylesheet" href="/css/style-cad.css">
     <title>Cadastro</title>
 </head>
 
 <body>
     <div class="conteiner">
-        <div class="col-conteiner">
-            <div class="saudacao">
-                <img src="/assets/user-login.png"></img>
-                <h1>Bem-vindo!</h1>
-                <span>Faça o seu cadastro para acessar sua conta</span>
-            </div>
-            <form action="/cadastro/efetuarCadastro" method="POST">
-                <div class="input-conteiner">
-                    <div class="label">
-                        <img src="/assets/email-icon.png" alt="">
-                        <label for="email">Nome completo</label>
-                    </div>
-                    <input type="text" name="nome" id="nome" placeholder="Entre com seu nome completo">
-                </div>
-                <div class="input-conteiner">
-                    <div class="label">
-                        <img src="/assets/email-icon.png" alt="">
-                        <label for="email">Cpf</label>
-                    </div>
-                    <input type="text" name="cpf" id="cpf" placeholder="Entre com seu Cpf">
-                </div>
-                <div class="input-conteiner">
-                    <div class="label">
-                        <img src="/assets/email-icon.png" alt="">
-                        <label for="email">Endereço</label>
-                    </div>
-                    <input type="text" name="endereco" id="endereco" placeholder="Entre com seu endereço">
-                </div>
-                <div class="input-conteiner">
-                    <div class="label">
-                        <img src="/assets/email-icon.png" alt="">
-                        <label for="email">Email</label>
-                    </div>
-                    <input type="email" name="email" id="email" placeholder="Entre com seu email">
-                </div>
-                <div class="input-conteiner">
-                    <div class="label">
-                        <img src="/assets/senha-icon.png" alt="">
-                        <label for="password">Senha</label>
-                    </div>
-                    <input type="password" name="senha" id="senha" placeholder="Entre com sua senha">
-                </div>
-                <div class="msg-erro">
-                    <% if(typeof msg !='undefined' ) { %>
-                        <span>
-                            <%= msg %>
-                        </span>
-                        <% } %>
-                </div>
-                <button type="submit">Login</button>
-            </form>
-            <div class="login-google">
-                <button><img src="/assets/google-icon.png" alt="Google"> Entre com o google</button>
-            </div>
-            <div class="cadastro">
-                <span>Não tem uma conta? <a href="/register">Cadastre-se</a></span>
-                <span>Esqueceu sua senha? <a href="/forgot-password">Clique aqui</a> para redefinir a senha</span>
-            </div>
+        <div class="saudacao">
+            <img src="/assets/user-login.png"></img>
+            <h1>Bem-vindo!</h1>
+            <span>Faça o seu cadastro para acessar sua conta</span>
         </div>
+        <form action="/cadastro/efetuarCadastro" method="POST">
+            <div class="input-conteiner">
+                <div class="label">
+                    <img src="/assets/email-icon.png" alt="">
+                    <label for="nome">Nome completo</label>
+                </div>
+                <input type="text" name="nome" id="nome" placeholder="Entre com seu nome completo">
+            </div>
+            <div class="input-conteiner">
+                <div class="label">
+                    <img src="/assets/telefone-icon.png" alt="">
+                    <label for="telefone">Telefone</label>
+                </div>
+                <input type="number" name="telefone" id="telefone" placeholder="Entre com seu telefone">
+            </div>
+            <div class="input-conteiner">
+                <div class="label">
+                    <img src="/assets/calendario-icon.png" alt="">
+                    <label for="nasc">Data de nascimento</label>
+                </div>
+                <input type="date" name="nasc" id="nasc" placeholder="Entre com a sua data de nascimento">
+            </div>
+            <div class="input-conteiner">
+                <div class="label">
+                    <img src="/assets/cpf-icon.png" alt="">
+                    <label for="cpf">Cpf</label>
+                </div>
+                <input type="text" name="cpf" id="cpf" placeholder="Entre com seu Cpf">
+            </div>
+            <div class="input-conteiner">
+                <div class="label">
+                    <img src="/assets/endereco-icon.png" alt="">
+                    <label for="endereco">Endereço</label>
+                </div>
+                <input type="text" name="endereco" id="endereco" placeholder="Entre com seu endereço">
+            </div>
+            <div class="input-conteiner">
+                <div class="label">
+                    <img src="/assets/email-icon.png" alt="">
+                    <label for="email">Email</label>
+                </div>
+                <input type="email" name="email" id="email" placeholder="Entre com seu email">
+            </div>
+            <div class="input-conteiner">
+                <div class="label">
+                    <img src="/assets/senha-icon.png" alt="">
+                    <label for="password">Senha</label>
+                </div>
+                <input type="password" name="senha" id="senha" placeholder="Entre com sua senha">
+            </div>
+            <div class="msg-erro">
+                <% if(typeof msg !='undefined' ) { %>
+                    <span>
+                        <%= msg %>
+                    </span>
+                    <% } %>
+            </div>
+            <button type="submit">Cadastrar</button>
+        </form>
+        <div class="login-google">
+            <button><img src="/assets/google-icon.png" alt="Google"> Entre com o google</button>
+        </div>
+        <div class="cadastro">
+            <span>Já possui uma conta? <a href="/register">clique aqui </a>para efetuar o login!</span>
+            <span>Esqueceu sua senha? <a href="/forgot-password">Clique aqui</a> para redefinir a senha</span>
+        </div>
+
     </div>
 </body>
 
