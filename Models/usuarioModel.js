@@ -2,77 +2,70 @@ const Database = require("../utils/database")
 
 
 
-class UsuarioModel{
-    #userId
-    #userNome
-    #userEmail
-    #userSenha
-    #userAtivo
-    #perfilId
+class UsuarioModel {
+    #usu_id
+    #usu_nome
+    #usu_email
+    #usu_senha
+    #usu_status
 
-    get userId(){
-        return this.#userId
+    get usu_id(){
+        return this.#usu_id
     }
-    set userId(value){
-        this.#userId = value
+    set usu_id(value){
+        this.#usu_id = value
     }
-    get userNome(){
-        return this.#userNome
+    get usu_nome(){
+        return this.#usu_nome
     }
-    set userNome(value){
-        this.#userNome = value
+    set usu_nome(value){
+        this.#usu_nome = value
     }
-    get userSenha(){
-        return this.#userSenha
+    get usu_senha(){
+        return this.#usu_senha
     }
-    set userSenha(value){
-        this.#userSenha = value
+    set usu_senha(value){
+        this.#usu_senha = value
     }
-    get userAtivo(){
-        return this.#userAtivo
+    get usu_status(){
+        return this.#usu_status
     }
-    set userAtivo(value){
-        this.#userAtivo = value
+    set usu_status(value){
+        this.#usu_status = value
     }
-    get userEmail(){
-        return this.#userEmail
+    get usu_email(){
+        return this.#usu_email
     }
-    set userEmail(value){
-        this.#userEmail = value
-    }
-    get perfilId(){
-        return this.#perfilId
-    }
-    set perfilId(value){
-        this.#perfilId = value
+    set usu_email(value){
+        this.#usu_email = value
     }
 
-    constructor(userId,userNome,userEmail,userSenha,userAtivo,perfilId){
-        this.#userId = userId
-        this.#userNome = userNome
-        this.#userEmail = userEmail
-        this.#userSenha = userSenha
-        this.#userAtivo = userAtivo
-        this.#perfilId = perfilId
+    constructor(usu_id,usu_nome,usu_email,usu_senha,usu_status){
+        this.#usu_id = usu_id
+        this.#usu_nome = usu_nome
+        this.#usu_email = usu_email
+        this.#usu_senha = usu_senha
+        this.#usu_status = usu_status
     }
 
     async cadastrar(){
-        let sql = "insert into usuario (user_email,user_senha,user_id,user_nome,user_status,perf_id) value (?,?,?,?,?,?) "
-        let valores = [this.#userEmail,this.#userSenha,this.#userId,this.#userNome,this.#userAtivo,this.perfilId]
+        let sql = "insert into usuario (usu_email,usu_senha,usu_id,usu_nome,usu_status) value (?,?,?,?,?) "
+        let valores = [this.#usu_email,this.#usu_senha,this.#usu_id,this.#usu_nome,this.#usu_status]
         let banco = new Database()
         let result = await banco.ExecutaComandoNonQuery(sql,valores)
         return result
     }
 
     async listar(){
-        let sql = "select * from cliente"
+        let sql = "select * from usuario"
         let banco = new Database()
         let result = await banco.ExecutaComando(sql)
         let lista = []
         for(let i =0; i< result.length; i++){
-            let usuario = new UsuarioModel(result[i]["user_id"],result[i]["user_nome"],result[i]["user_email"],result[i]["user_senha"],result[i]["user_status"],result[i]["perf_id"])
+            let usuario = new UsuarioModel(result[i]["usu_id"],result[i]["usu_nome"],result[i]["usu_email"],result[i]["usu_senha"],result[i]["usu_status"])
             lista.push(usuario)
         }
+        return lista
     }
 
 }
