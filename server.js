@@ -11,6 +11,7 @@ app.set('layout', './layout.ejs')
 app.use(express.static('Public'))
 app.use(expressEjsLayouts)
 app.use(express.urlencoded({extended:true}))
+app.use(express.json());
 app.use('/',homeRoute)
 app.use('/login',loginRoute)
 app.use('/usuario',usuarioRouter)

@@ -1,15 +1,33 @@
 const PerfilModel = require('../Models/perfilModel')
+const UsuarioModel = require('../Models/usuarioModel')
 class UserController{
-    listar(req,res){
-        res.render('usuario/listar')
+    async listar(req,res){
+        let usuario = new UsuarioModel()
+        let lista = await usuario.listar()
+        res.render('usuario/listar',{lista})
     }
-    cadastrar(req,res){
+    async cadastrar(req,res){
         const modelo = new PerfilModel()
-        let lista = modelo.listar()
-        res.render('usuario/cadastrar',{lista})
+        let lista = await modelo.listar()
+        res.render('usuario/cadastrar',{lista,layout:false})
     }
-    // efetuarCadastro(req,res){
-
-    // }
+    async efetuarCadastro(req,res){
+        let ok = false
+        let msg = ""
+        let{nome,email,senha,perfil} = req.body
+        let usuario = new UsuarioModel(nome,email.senha,perfil)
+        let result = await usuario.cadastrar()
+        if(nome && email && senha && perfil){
+            if(result){
+                ok = true
+                msg = "Usuário cadastrado com sucesso!"
+            }else{
+                msg = "Erro... Não foi possível cadastrar o usuário!"
+            }
+        }else{
+            msg = "Erro... As informações inceridas estão incorretas!"
+        }
+        res.send({ok,msg})
+    }
 }
 module.exports = UserController

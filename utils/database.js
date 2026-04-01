@@ -9,8 +9,8 @@ class Database {
     constructor() {
 
         this.#conexao = mysql.createPool({
-            host: '127.0.0.1', //endereço do nosso banco de dados na nuvem
-            database: 'perfumedb', //a database de cada um de vocês possui a nomenclatura PFS2_(RA)
+            host: 'localhost', //endereço do nosso banco de dados na nuvem
+            database: 'perfumaria', //a database de cada um de vocês possui a nomenclatura PFS2_(RA)
             user: 'root', // usuario e senha de cada um de vocês é o RA
             password: '',
             idleTimeout: 30000,

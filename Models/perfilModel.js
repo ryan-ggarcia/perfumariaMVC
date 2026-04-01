@@ -2,8 +2,7 @@ const Database = require("../utils/database")
 
 class PerfilModel{
     #per_id
-    #per_nome
-    #per_descricao
+    #per_desc
 
     get per_id(){
         return this.#per_id
@@ -11,23 +10,16 @@ class PerfilModel{
     set per_id(value){
         this.#per_id = value
     }
-    get per_nome(){
-        return this.#per_nome
+    get per_desc(){
+        return this.#per_desc
     }
-    set per_nome(value){
-        this.#per_nome = value
-    }
-    get per_descricao(){
-        return this.#per_descricao
-    }
-    set per_descricao(value){
-        this.#per_descricao = value
+    set per_desc(value){
+        this.#per_desc = value
     }
 
-    constructor(per_id,per_nome,per_descricao){
+    constructor(per_id,per_desc){
         this.#per_id = per_id
-        this.#per_nome = per_nome
-        this.#per_descricao = per_descricao
+        this.#per_desc = per_desc
     }
 
     async listar(){
@@ -36,7 +28,7 @@ class PerfilModel{
         let row = await banco.ExecutaComando(sql)
         let lista =[]
         for(let i = 0; i < row.length;i++){
-            let usuario = new PerfilModel(row[i]['per_id'],row[i]['per_nome'],row[i]['per_descricao'])
+            let usuario = new PerfilModel(row[i]['id_perfil'],row[i]['des_perfil'])
             lista.push(usuario)
         }
         return lista

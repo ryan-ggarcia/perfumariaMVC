@@ -6,5 +6,6 @@ const router = express.Router()
 
 router.get('/listar',controller.listar)
 router.get('/cadastrar',controller.cadastrar)
+router.post('/efetuarCadastro',controller.efetuarCadastro)
 
 module.exports = router

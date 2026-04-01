@@ -1,33 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<div>
-    <h1>Cadastro de Usuario</h1>
-    <a href="/usuario/listar"></a>
-</div>
-<div>
-    <div>
-        <label for="text">Nome</label>
-        <input type="text" name="nome" id="nome">
-    </div>
-    <div>
-        <label for="text">Email</label>
-        <input type="text" name="email" id="email">
-    </div>
-    <div>
-        <label for="text">Senha</label>
-        <input type="text" name="senha" id="senha">
-    </div>
-    <label for="text">Perfil</label>
-    <select name="perfil" id="perfil">
-        <% for(let i=0; i<lista.length; i++){ %>
-            <option value="<%= lista[i].per_id %>"> <%= lista[i].per_nome %> </option>
-        <% } %>
-    </select>
-    <div>
-        <input type="checkbox" name="ativo" id="ativo" value="S">
-    </div>
-    <div>
-        <button>Cadastrar</button>
-        <a href="/home">Voltar</a>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style-cad.css">
+    <title>Document</title>
+    <script src="/js/usuario/fetchCadastrar.js" ></script>
+</head>
+
+<body>
+    <div class="conteiner">
+        <div class="saudacao">
+            <h1>Cadastro de Usuario</h1>
+            <span>Caso ja tenha um login </span><a href="/login">Clique aqui</a> <span> para efetuar o
+                login</span>
+        </div>
+        <div class="form">
+            <div>
+                <label class="label" for="text">Nome</label>
+                <input type="text" name="nome" id="nome">
+                <div class="msg-erro">
+
+                </div>
+            </div>
+            <div>
+                <label for="text">Email</label>
+                <input type="text" name="email" id="email">
+            </div>
+            <div>
+                <label for="text">Senha</label>
+                <input type="password" name="senha" id="senha">
+            </div>
+            <div>
+                <label for="text">Perfil</label>
+                <select name="perfil" id="perfil">
+                    <option value="0">--Selecionar--</option>
+                    <%for(let i=0;i < lista.length; i++){%>
+                        <option value="<%= lista[i].per_id %>">
+                            <%= lista[i].per_desc%>
+                        </option>
+                        <%}%>
+                </select>
+            </div>
+            <div class="checkbox-container">
+                <input type="checkbox" name="ativo" id="ativo" value="S">
+                <label for="ativo">Concordo com os termos</label>
+            </div>
+            <div>
+                <button type="button" class="btnCad" id="btnCad">Cadastrar</button>
+                <a href="/home">Voltar</a>
+            </div>
+
+        </div>
+
     </div>
 
-</div>
+</body>
+
+</html>
