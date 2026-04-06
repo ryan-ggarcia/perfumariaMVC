@@ -77,15 +77,21 @@ class UsuarioModel {
                 result[i]["usu_id"],
                 result[i]["usu_nome"],
                 result[i]["usu_email"],
-                null,
-                null,
+                result[i]["usu_senha"],
+                result[i]["usu_perfil"],
                 result[i]["des_perfil"]
             )
             lista.push(usuario)
         }
         return lista
     }
-
+    async excluir(id){
+        let sql = "delete from usuario where usu_id = ?"
+        let valor = [id]
+        let banco = new Database()
+        let result = await banco.ExecutaComandoNonQuery(sql,valor)
+        return result
+    }
 }
 
 module.exports = UsuarioModel

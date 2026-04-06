@@ -7,6 +7,7 @@
 
 /* tabela */
 .user-table {
+    margin-top: 10px;
     width: 100%;
     border-collapse: collapse;
     min-width: 600px;
@@ -17,6 +18,7 @@
 .user-table thead {
     background-color: #5D4037;
     color: white;
+    border-radius: 8px;
 }
 
 .user-table th,
@@ -52,6 +54,40 @@
     color: #721c24;
 }
 
+td a {
+    background-color: #ff9500;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 5px;
+    cursor: pointer;
+    border: 1px solid #ff9500;
+}
+td button{
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+.cadastrar{
+    background-color: rgb(30, 83, 144);
+    border-radius: 8px;
+    padding: 8px 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.cadastrar:hover{
+    background-color: rgb(30, 83, 144, 0.8);
+}
+.cadastrar a{
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+.content{
+    display: flex;
+    width: 75%;
+    justify-content: flex-end;
+}
 /* 📱 RESPONSIVO */
 @media (max-width: 600px) {
     
