@@ -1,1 +1,30 @@
 <h1>Listar Usuario</h1>
+<link rel="stylesheet" href="/css/style-list.css">
+<div class="table-container">
+  <table class="user-table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Perfil</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%for(let i =0;i<lista.length;i++){%>
+        <tr>
+            <td><%=lista[i].usu_id%></td>
+            <td><%=lista[i].usu_nome%></td>
+            <td><%=lista[i].usu_email%></td>
+            <td><%=lista[i].usu_perfil_desc%></td>
+            <td>
+                <a href="/usuario/editar/<%=lista[i].usu_id%>">Editar</a>
+                <button data-delete="<%=lista[i].usu_id%>" >Deletar</button>
+            </td>
+        </tr>
+      <%}%>
+    </tbody>
+  </table>
+</div>

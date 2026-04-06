@@ -15,12 +15,13 @@ class UserController{
         let ok = false
         let msg = ""
         let{nome,email,senha,perfil} = req.body
-        let usuario = new UsuarioModel(nome,email.senha,perfil)
+        let usuario = new UsuarioModel(null,nome,email,senha,perfil)
         let result = await usuario.cadastrar()
         if(nome && email && senha && perfil){
             if(result){
                 ok = true
                 msg = "Usuário cadastrado com sucesso!"
+                window.location.href = "/usuario/listar"
             }else{
                 msg = "Erro... Não foi possível cadastrar o usuário!"
             }

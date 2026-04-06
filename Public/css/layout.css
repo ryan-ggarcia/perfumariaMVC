@@ -15,7 +15,6 @@ body {
 nav {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
     align-items: center;
     padding: 15px;
     width: 100%;
@@ -52,6 +51,39 @@ nav {
     outline-style: solid;
     outline-width: 5px;
     outline-color: rgb(212, 175, 55, 0.3);
+}
+.dropDown-menu {
+    position: relative;
+}
+.title-menu {
+    color: #5D4037;
+    font-weight: 600;
+    cursor: pointer;
+}
+.drop-down{
+    position: absolute;
+    top: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    padding: 10px 0px;
+    list-style: none;
+    z-index: 1000;
+}
+
+.dropDown-menu:hover .drop-down {
+    display: flex;
+}
+.drop-down li {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.drop-down li:hover {
+    background-color: #f0f0f0;
 }
 
 section {

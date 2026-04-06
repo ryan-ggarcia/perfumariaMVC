@@ -1,0 +1,93 @@
+/* container com scroll horizontal */
+.table-container {
+    width: 75%;
+    overflow-x: auto;
+    border-radius: 8px;
+}
+
+/* tabela */
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+    font-family: Arial, sans-serif;
+}
+
+/* cabeçalho */
+.user-table thead {
+    background-color: #5D4037;
+    color: white;
+}
+
+.user-table th,
+.user-table td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+/* linhas */
+.user-table tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.user-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* status */
+.status {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status.ativo {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status.inativo {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* 📱 RESPONSIVO */
+@media (max-width: 600px) {
+    
+    .user-table thead {
+        display: none;
+    }
+
+    .user-table,
+    .user-table tbody,
+    .user-table tr,
+    .user-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .user-table tr {
+        margin-bottom: 15px;
+        background: #fff;
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .user-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .user-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        width: 50%;
+        text-align: left;
+        font-weight: bold;
+        color: #555;
+    }
+}

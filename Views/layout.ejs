@@ -1,13 +1,37 @@
 <link rel="stylesheet" href="/css/layout.css">
 <nav>
     <div class="links-nav">
-       <a href="/home"><span>RYAN PERFUMES</span></a>
+        <a href="/home"><span>RYAN PERFUMES</span></a>
     </div>
     <div class="links-nav">
         <input type="search" placeholder="Buscar.....">
-        <a href="/Perfumes">Produtos</a>
-        <a href="/sobre">Sobre nós</a>
-        <a href="/contato">Contato</a>
+    </div>
+    
+    <div class="link-nav">
+        <div class="dropDown-menu">
+            <span class="title-menu">Menu usuário</span>
+            <ul class="drop-down">
+                <li>
+                    <a href="/usuario/cadastrar">Cadastrar Usuário</a>
+                </li>
+                <li>
+                    <a href="/usuario/listar">Listar Usuario</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="link-nav">
+        <div class="dropDown-menu">
+            <span class="title-menu">Menu produtos</span>
+            <ul class="drop-down">
+                <li>
+                    <a href="/usuario/cadastrar">Cadastrar Usuário</a>
+                </li>
+                <li>
+                    <a href="/usuario/listar">Listar Usuario</a>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="links-nav">
         <a href="/login">Login</a>
@@ -19,10 +43,3 @@
     <%- body%>
 </section>
 
-<footer>
-    <span>
-        outros links
-    </span>
-    <a href="/usuario/listar">Lista de usuarios</a>
-    <a href="/usuario/cadastrar">Cadastro de usuarios</a>
-</footer>
