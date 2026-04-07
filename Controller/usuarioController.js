@@ -1,11 +1,13 @@
 const PerfilModel = require('../Models/perfilModel')
 const UsuarioModel = require('../Models/usuarioModel')
-const Database = require('../utils/database')
 class UserController{
     async listar(req,res){
         let usuario = new UsuarioModel()
+        let perfil = new PerfilModel()
         let lista = await usuario.listar()
-        res.render('usuario/listar',{lista})
+        let listaPer = await perfil.listar()
+        let obter = await usuario.obter(req.params.id)
+        res.render('usuario/listar',{lista,listaPer,obter})
     }
     async cadastrar(req,res){
         const modelo = new PerfilModel()
@@ -14,22 +16,30 @@ class UserController{
     }
     async efetuarCadastro(req,res){
         let ok = false
-        let msg = ""
         let{nome,email,senha,perfil} = req.body
         let usuario = new UsuarioModel(null,nome,email,senha,perfil)
         let result = await usuario.cadastrar()
         if(nome && email && senha && perfil){
             if(result){
                 ok = true
-                msg = "Usuário cadastrado com sucesso!"
-                window.location.href = "/usuario/listar"
             }else{
-                msg = "Erro... Não foi possível cadastrar o usuário!"
+                ok = false
             }
         }else{
-            msg = "Erro... As informações inceridas estão incorretas!"
+           ok = false
         }
-        res.send({ok,msg})
+        res.send({ok})
+    }
+    async update(req,res){
+        let ok = false
+        let {id, nome, email, perfil} = req.body
+        let usuario = new UsuarioModel(id,nome,email,null,perfil)
+        let result = await usuario.atualizar()
+        if(result){
+
+            ok = true
+        }
+        res.send({ok})
     }
     async deletar(req,res){
         let ok = false

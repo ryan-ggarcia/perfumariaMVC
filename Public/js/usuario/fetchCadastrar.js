@@ -34,38 +34,32 @@ function validar(e) {
                 perfil: perfil.value
             })
         })
-        .then(function (res) {
-            // Se o back-end retornar JSON, parse; caso contrário, apenas propagar o status
-            const contentType = res.headers.get('content-type') || ''
-            if (contentType.includes('application/json')) {
-                return res.json().then(json => ({ ok: res.ok, body: json }))
-            }
-            return { ok: res.ok, body: null }
-        }).then(function (result) {
-            if (result.ok) {
+            .then(function (res) {
+                return res.json()
+            }).then(function (result) {
+                if (result.ok) {
+                    Swal.fire({
+                        title: "Cadastro Realizada!",
+                        text: "Cadastro realizada com sucesso.",
+                        icon: "success"
+                    })
+                    window.location.href = "/usuario/listar"
+                } else {
+                    Swal.fire({
+                        title: "Erro no cadastro.",
+                        text: "Erro ao realizar o cadastro!",
+                        icon: "error"
+                    })
+                }
+            })
+            .catch(function (err) {
+                console.error(err);
                 Swal.fire({
-                    title: "Cadastro realizado!",
-                    text: "Cadastro realizado com sucesso.",
-                    icon: "success"
-                }).then(() => { window.location.href = "/usuario/listar" })
-            }
-            else {
-                console.error('Cadastro falhou:', result.body)
-                Swal.fire({
-                    title: "Erro...!",
-                    text: "Erro ao cadastrar usuário.",
+                    title: "Erro...",
+                    text: "Verifique se o email digitado não foi duplicado!",
                     icon: "error"
                 })
-            }
-        })
-        .catch(function (err) {
-            console.error(err);
-            Swal.fire({
-                title: "Erro...",
-                text: "Conexão do banco de dados perdida!",
-                icon: "error"
             })
-        })
     }
 
 }

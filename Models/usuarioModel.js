@@ -63,7 +63,35 @@ class UsuarioModel {
         let result = await banco.ExecutaComandoNonQuery(sql, valores)
         return result
     }
-
+    async obter(id){
+        let sql = `select usu_nome, usu_email, usu_perfil_id from usuario where usu_id = ?`
+        let valor = [id]
+        let banco = new Database()
+        let rows = await banco.ExecutaComando(sql,valor)
+        if(rows.length > 0){
+            let usuario = new UsuarioModel(
+                rows[0]["usu_id"],
+                rows[0]["usu_nome"],
+                rows[0]["usu_email"],
+                rows[0]["usu_senha"],
+                rows[0]["usu_perfil"]
+            )
+            return usuario
+        }
+    }
+    async atualizar(){
+        let sql = "update usuario set usu_nome = ?, usu_email = ?, usu_perfil_id where usu_id = ?"
+        let valores = [
+            this.#usu_id,
+            this.#usu_nome,
+            this.#usu_email,
+            this.#usu_senha,
+            this.#usu_perfil
+        ]
+        let banco = Database()
+        let result = await banco.ExecutaComandoNonQuery(sql,valores)
+        return result
+    }
     async listar() {
         let sql = `
         select u.usu_id, u.usu_nome, u.usu_email,p.des_perfil from usuario u

@@ -34,15 +34,52 @@
             <%=lista[i].usu_perfil_desc%>
           </td>
           <td>
-            <a href="/usuario/editar/<%=lista[i].usu_id%>"><img src="/assets/pincel.png" alt="editar"></a>
-            <button type="button" data-id="<%=lista[i].usu_id%>" class="btn-delete"><img src="/assets/lixo.png" alt="lixeira"></button>
+            <button type="button" data-update="<%=lista[i].usu_id%>" class="btn-update"><img src="/assets/pincel.png"
+                alt="Edição"></button>
+            <button type="button" data-id="<%=lista[i].usu_id%>" class="btn-delete"><img src="/assets/lixo.png"
+                alt="lixeira"></button>
           </td>
         </tr>
         <%}%>
     </tbody>
   </table>
 </div>
-<!-- SweetAlert2 (CDN) -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- Script that attaches delete handlers -->
-<script src="/js/usuario/fetchDeletar.js"></script>
+<div class="modal">
+  <div class="modal-card">
+    <div class="title-modal">
+      <span>Editar Usuário</span>
+    </div>
+    <div class="form">
+      <div>
+        <label class="label" for="text">Nome</label>
+        <input type="text" name="nome" id="nome" value="<%= obter.usu_nome%>">
+        <div class="msg-erro">
+
+        </div>
+      </div>
+      <div>
+        <label for="text">Email</label>
+        <input type="text" name="email" id="email" value="onbter.usu_email">
+      </div>
+      <div>
+        <label for="text">Perfil</label>
+        <select name="perfil" id="perfil">
+          <option value="0">--Selecionar--</option>
+          <%for(let i=0;i < listaPer.length; i++){%>
+            <option value="<%= listaPer[i].per_id %>">
+              <%= listaPer[i].per_desc%>
+            </option>
+            <%}%>
+        </select>
+      </div>
+      <div class="btn-modal">
+        <button class="btn-close" type="button">Cancelar</button>
+        <button class="btn-salvar" type="button">Salvar</button>
+      </div>
+    </div>
+  </div>
+  <!-- SweetAlert2 (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Script that attaches delete handlers -->
+  <script src="/js/usuario/fetchDeletar.js"></script>
+  <script src="/js/usuario/fectAtualizar.js"></script>
