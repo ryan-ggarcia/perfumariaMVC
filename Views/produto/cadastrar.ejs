@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style-cad.css">
+    <title>Cadastrar Usuario</title>
+</head>
+
+<body>
+    <div class="conteiner-produto">
+        <div class="saudacao">
+            <h1>Cadastro de Perfume</h1>
+             <span>Cadastre o seu perfume aqui! </span>
+        </div>
+        <div class="form-produto">
+            <div>
+                <label class="label" for="text">Nome</label>
+                <input type="text" name="nome" id="nome">
+            </div>
+            <div>
+                <label for="text">Marca</label>
+                <input type="text" name="marca" id="marca">
+            </div>
+            <div>
+                <label for="text">Quantidade</label>
+                <input type="number" name="quant" id="quant" max="1000" min="0">
+            </div>
+            <div>
+                <label for="text">Preço</label>
+                <input type="number" name="preco" id="preco" step="0.01" min="1">
+            </div>
+            <div>
+                <label for="text">Imagem</label>
+                <input type="file" accept="image/png, image/jpeg" name="image" id="image">
+                <p>Formato permitido: PNG ou JPEG</p>
+            </div>
+            <div>
+                <label for="text">Status</label>
+                <select name="status" id="status">
+                    <option value="ativo">Ativo</option>
+                    <option value="inativo">Inativo</option>
+                </select>
+            </div>
+            <div>
+                <label for="text">Descrição</label>
+                <textarea name="desc" id="desc"></textarea>
+            </div>
+            <div>
+                <a href="/home">Voltar</a>
+                <button type="button" class="btnCad" id="btnCad">Cadastrar</button>
+            </div>
+
+        </div>
+
+    </div>
+<!-- SweetAlert2 (CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Script that attaches delete handlers -->
+ <script src="/js/produto/fetchCadastrar.js"></script>
+</body>
+
+</html>

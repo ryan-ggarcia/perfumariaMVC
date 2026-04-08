@@ -22,27 +22,27 @@
       <%for(let i=0;i<lista.length;i++){%>
         <tr>
           <td>
-            <%=lista[i].usu_id%>
+            
           </td>
           <td>
-            <%=lista[i].usu_nome%>
+            
           </td>
           <td>
-            <%=lista[i].usu_email%>
+          
           </td>
           <td>
-            <%=lista[i].usu_perfil_desc%>
+           
           </td>
           <td>
             <button type="button"
                     class="btn-update"
-                    data-update-id="<%= lista[i].usu_id %>"
-                    data-update-nome="<%= lista[i].usu_nome %>"
-                    data-update-email="<%= lista[i].usu_email %>"
-                    data-update-perfil="<%= lista[i].usu_perfil %>">
+                    data-update-id=""
+                    data-update-nome=""
+                    data-update-email=""
+                    data-update-perfil="">
               <img src="/assets/pincel.png" alt="Edição">
             </button>
-            <button type="button" data-id="<%=lista[i].usu_id%>" class="btn-delete"><img src="/assets/lixo.png"
+            <button type="button" data-id="" class="btn-delete"><img src="/assets/lixo.png"
                 alt="lixeira"></button>
           </td>
         </tr>
@@ -70,7 +70,7 @@
         <select name="perfil" id="perfil">
           <option value="0">--Selecionar--</option>
           <% for(let j = 0; j < listaPer.length; j++){ %>
-            <option value="<%= listaPer[j].per_id %>"><%= listaPer[j].per_desc %></option>
+            <option value=""></option>
           <% } %>
         </select>
       </div>
@@ -81,9 +81,3 @@
     </div>
   </div>
 </div>
-
-<!-- SweetAlert2 (CDN) -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- Script that attaches delete/update handlers -->
-<script src="/js/usuario/fetchDeletar.js"></script>
-<script src="/js/usuario/fectAtualizar.js"></script>

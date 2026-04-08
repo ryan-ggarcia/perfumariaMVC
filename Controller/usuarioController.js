@@ -6,8 +6,7 @@ class UserController{
         let perfil = new PerfilModel()
         let lista = await usuario.listar()
         let listaPer = await perfil.listar()
-        let obter = await usuario.obter(req.params.id)
-        res.render('usuario/listar',{lista,listaPer,obter})
+        res.render('usuario/listar',{lista,listaPer})
     }
     async cadastrar(req,res){
         const modelo = new PerfilModel()
@@ -50,6 +49,21 @@ class UserController{
             ok = true
         }
         res.send({ok})
+    }
+    async obter(req,res){
+        let id = req.params.id
+        let usuario = new UsuarioModel()
+        let result = await usuario.obter(id)
+        if(result){
+            res.send({ok:true, usuario:{
+                usu_id: result.usu_id,
+                usu_nome: result.usu_nome,
+                usu_email: result.usu_email,
+                usu_perfil: result.usu_perfil
+            }})
+        } else {
+            res.status(404).send({ok:false})
+        }
     }
 }
 module.exports = UserController

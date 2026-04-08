@@ -57,44 +57,44 @@ class UsuarioModel {
     }
 
     async cadastrar() {
-        let sql = "insert into usuario (usu_nome,usu_email,usu_senha,usu_perfil_id) value (?,?,?,?) "
+        let sql = "insert into usuario (usu_nome,usu_email,usu_senha,usu_perfil_id) values (?,?,?,?) "
         let valores = [this.#usu_nome, this.#usu_email, this.#usu_senha, this.#usu_perfil]
         let banco = new Database()
         let result = await banco.ExecutaComandoNonQuery(sql, valores)
         return result
     }
     async obter(id){
-        let sql = `select usu_nome, usu_email, usu_perfil_id from usuario where usu_id = ?`
+        let sql = `select usu_id, usu_nome, usu_email, usu_senha, usu_perfil_id from usuario where usu_id = ?`
         let valor = [id]
         let banco = new Database()
         let rows = await banco.ExecutaComando(sql,valor)
-        if(rows.length > 0){
+        if(rows && rows.length > 0){
             let usuario = new UsuarioModel(
                 rows[0]["usu_id"],
                 rows[0]["usu_nome"],
                 rows[0]["usu_email"],
                 rows[0]["usu_senha"],
-                rows[0]["usu_perfil"]
+                rows[0]["usu_perfil_id"]
             )
             return usuario
         }
+        return null
     }
     async atualizar(){
-        let sql = "update usuario set usu_nome = ?, usu_email = ?, usu_perfil_id where usu_id = ?"
+        let sql = "update usuario set usu_nome = ?, usu_email = ?, usu_perfil_id = ? where usu_id = ?"
         let valores = [
-            this.#usu_id,
             this.#usu_nome,
             this.#usu_email,
-            this.#usu_senha,
-            this.#usu_perfil
+            this.#usu_perfil,
+            this.#usu_id
         ]
-        let banco = Database()
+        let banco = new Database()
         let result = await banco.ExecutaComandoNonQuery(sql,valores)
         return result
     }
     async listar() {
         let sql = `
-        select u.usu_id, u.usu_nome, u.usu_email,p.des_perfil from usuario u
+        select u.usu_id, u.usu_nome, u.usu_email, u.usu_senha, u.usu_perfil_id, p.des_perfil as usu_perfil_desc from usuario u
         inner join perfil p on u.usu_perfil_id = p.id_perfil
        `
         let banco = new Database()
@@ -106,8 +106,8 @@ class UsuarioModel {
                 result[i]["usu_nome"],
                 result[i]["usu_email"],
                 result[i]["usu_senha"],
-                result[i]["usu_perfil"],
-                result[i]["des_perfil"]
+                result[i]["usu_perfil_id"],
+                result[i]["usu_perfil_desc"]
             )
             lista.push(usuario)
         }

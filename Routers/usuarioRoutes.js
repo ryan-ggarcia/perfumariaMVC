@@ -8,5 +8,7 @@ router.get('/listar',controller.listar)
 router.get('/cadastrar',controller.cadastrar)
 router.post('/efetuarCadastro',controller.efetuarCadastro)
 router.post('/deletar',controller.deletar)
+router.get('/obter/:id', controller.obter)
+router.post('/update', controller.update)
 
 module.exports = router
