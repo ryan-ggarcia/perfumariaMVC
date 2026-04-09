@@ -1,4 +1,6 @@
 const Database = require('../utils/database')
+const fs = require('fs')
+const path = require('path')
 const banco = new Database()
 class ProdutoModel{
     #pro_id
@@ -89,9 +91,9 @@ class ProdutoModel{
         return lista
     }
     async cadastrar(){
+        
         let sql = "insert into produto (pro_nome,pro_marca,pro_quant,pro_preco,pro_image,pro_status,pro_desc) values (?,?,?,?,?,?,?)"
         let valores = [
-            this.#pro_id,
             this.#pro_nome,
             this.#pro_marca,
             this.#pro_quant,
@@ -105,27 +107,32 @@ class ProdutoModel{
     }
 
     async atualizar(){
-        let sql = `update produto set pro_nome = ?, pro_marca = ?, pro_quant = ?
-        pro_preco = ?, pro_image = ?, pro_status = ?, pro_desc = ?`
+        let sql = `update produto set pro_nome = ?, pro_marca = ?, pro_quant = ?, pro_preco = ?, pro_image = ?, pro_status = ?, pro_desc = ? where pro_id = ?`
         let valores = [
-            this.#pro_id,
             this.#pro_nome,
             this.#pro_marca,
             this.#pro_quant,
             this.#pro_preco,
             this.#pro_image,
             this.#pro_status,
-            this.#pro_desc
+            this.#pro_desc,
+            this.#pro_id
         ]
         let result = banco.ExecutaComandoNonQuery(sql,valores)
         return result
     }
 
     async excluir(id){
+        if(this.#pro_image){
+            let imagePath = path.join(__dirname, '..', 'public', 'images', this.#pro_image)
+            if(fs.existsSync(imagePath)){
+                fs.unlinkSync(imagePath)
+            }
+        }
         let sql = "delete from produto where pro_id = ?"
         let valores = [id]
-        let result = await banco.ExecutaComandoLastInserted(sql, valores)
-        return result
+        let result = await banco.ExecutaComandoNonQuery(sql, valores)
+         return result
     }
 
 }
