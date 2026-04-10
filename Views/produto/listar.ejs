@@ -12,8 +12,12 @@
       <tr>
         <th>Id</th>
         <th>Nome</th>
-        <th>Email</th>
-        <th>Perfil</th>
+        <th>Marca</th>
+        <th>Quantidade(Unidade)</th>
+        <th>Preço</th>
+        <th>imagem</th>
+        <th>Status</th>
+        <th>Descrição</th>
         <th>Ações</th>
       </tr>
     </thead>
@@ -22,16 +26,28 @@
       <%for(let i=0;i<lista.length;i++){%>
         <tr>
           <td>
-            
+            <%=lista[i].pro_id%>
           </td>
           <td>
-            
+            <%=lista[i].pro_nome%>
           </td>
           <td>
-          
+            <%=lista[i].pro_marca%>
           </td>
           <td>
-           
+            <%=lista[i].pro_quant%>
+          </td>
+          <td>
+            <%= lista[i].pro_preco %>
+          </td>
+          <td>
+            <%=lista[i].pro_image%>
+          </td>
+          <td>
+            <%=lista[i].pro_status%>
+          </td>
+          <td>
+            <%=lista[i].pro_desc%>
           </td>
           <td>
             <button type="button"
@@ -42,7 +58,7 @@
                     data-update-perfil="">
               <img src="/assets/pincel.png" alt="Edição">
             </button>
-            <button type="button" data-id="" class="btn-delete"><img src="/assets/lixo.png"
+            <button type="button" data-id="<%= lista[i].pro_id%>" class="btn-delete"><img src="/assets/lixo.png"
                 alt="lixeira"></button>
           </td>
         </tr>
@@ -50,34 +66,4 @@
     </tbody>
   </table>
 </div>
-<!-- Modal (single, populated by JS) -->
-<div class="modal" style="display:none">
-  <div class="modal-card">
-    <div class="title-modal"><span>Editar Usuário</span></div>
-    <div class="form">
-      <input type="hidden" id="usu_id_hidden" value="">
-      <div>
-        <label class="label" for="text">Nome</label>
-        <input type="text" name="nome" id="nome" value="">
-        <div class="msg-erro"></div>
-      </div>
-      <div>
-        <label for="text">Email</label>
-        <input type="text" name="email" id="email" value="">
-      </div>
-      <div>
-        <label for="text">Perfil</label>
-        <select name="perfil" id="perfil">
-          <option value="0">--Selecionar--</option>
-          <% for(let j = 0; j < listaPer.length; j++){ %>
-            <option value=""></option>
-          <% } %>
-        </select>
-      </div>
-      <div class="btn-modal">
-        <button class="btn-close" type="button">Cancelar</button>
-        <button class="btn-salvar" type="button">Salvar</button>
-      </div>
-    </div>
-  </div>
-</div>
+<script src="/js/produto/fecthDeletar.js"></script>
