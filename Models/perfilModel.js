@@ -28,7 +28,7 @@ class PerfilModel{
         let row = await banco.ExecutaComando(sql)
         let lista =[]
         for(let i = 0; i < row.length;i++){
-            let usuario = new PerfilModel(row[i]['id_perfil'],row[i]['des_perfil'])
+            let usuario = new PerfilModel(row[i]['per_id'],row[i]['per_desc'])
             lista.push(usuario)
         }
         return lista

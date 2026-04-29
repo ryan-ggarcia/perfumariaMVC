@@ -9,6 +9,8 @@ const port = 3000
 app.set('view engine','ejs');
 app.set('layout', './layout.ejs')
 // app.set('view', '../Views.ejs')
+
+global.CAMINHO_DA_IMAGEM = '/img/produtos/'
 app.use(express.static('Public'))
 app.use(expressEjsLayouts)
 app.use(express.urlencoded({extended:true}))

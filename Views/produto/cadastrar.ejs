@@ -32,15 +32,23 @@
                 <input type="number" name="preco" id="preco" step="0.01" min="1">
             </div>
             <div>
+                <label for="text">Validade</label>
+                <input type="date" name="validade" id="validade">
+            </div>
+            <div>
                 <label for="text">Imagem</label>
-                <input type="file" accept="image/png, image/jpeg" name="image" id="image">
+                <input type="file" accept="image/png, image/jpeg, image/jpg" name="image" id="image">
                 <p>Formato permitido: PNG ou JPEG</p>
+            </div>
+            <div id="divPrev">
+                    <label for="text">Pré-visualização</label>
+                    <img id="prevImage" src="#" alt="Pré-visualização da imagem" style="display: none; max-width: 200px; max-height: 200px;">
             </div>
             <div>
                 <label for="text">Status</label>
                 <select name="status" id="status">
-                    <option value="ativo">Ativo</option>
-                    <option value="inativo">Inativo</option>
+                    <option value="1">Ativo</option>
+                    <option value="0">Inativo</option>
                 </select>
             </div>
             <div>

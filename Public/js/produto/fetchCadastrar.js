@@ -1,6 +1,28 @@
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const btn = document.getElementById("btnCad")
+    const btnPrev = document.getElementById("prevImage")
     btn.addEventListener("click", cadastrar)
+    btnPrev.addEventListener("change", previaImagem)
+
+    function previaImagem(){
+        //validar imagem
+            let file = image.files[0]
+            let ext = file.type.split("/")[1]
+            if(ext === "png" || ext === "jpeg" || ext === "jpg"){
+                let url = URL.createObjectURL(file)
+                document.getElementById("prevImagem").src = url
+                document.getElementById("divPrev").style.display = "block"
+            }else{
+                Swal.fire({
+                    title: 'Formato de imagem inválido.',
+                    text: 'Por favor, selecione uma imagem no formato PNG ou JPEG.',
+                    icon: 'error'
+                })
+                document.getElementById("divPrev").style.display = "none"
+            }
+    }
 
     function cadastrar() {
         const nome = document.getElementById("nome")
@@ -10,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const image = document.getElementById("image")
         const status = document.getElementById("status")
         const desc = document.getElementById("desc")
+        const validade = document.getElementById("validade")
 
         nome.style.borderColor = "green"
         marca.style.borderColor = "green"
@@ -18,8 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
         image.style.borderColor = "green"
         status.style.borderColor = "green"
         desc.style.borderColor = "green"
+        validade.style.borderColor = "green"
 
-        if (!nome.value || !marca.value || !quant.value || !preco.value || (!image.files || !image.files[0]) || status.value === "0" || !desc.value) {
+        if (!nome.value || !marca.value || !quant.value || !preco.value || (!image.files || !image.files[0]) || status.value === "0" || !desc.value || !validade.value) {
             Swal.fire({
                 title: 'Não foi possível realizar o cadastro.',
                 text: 'Preencha todos os campos obrigatórios',
@@ -32,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!image.files || !image.files[0]) image.style.borderColor = "red"
             if (status.value === "0") status.style.borderColor = "red"
             if (!desc.value) desc.style.borderColor = "red"
+            if (!validade.value) validade.style.borderColor = "red"
         }
         else {
             // Use FormData for file upload (multer expects multipart/form-data)
@@ -42,10 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
             formData.append('preco', parseFloat(preco.value))
             formData.append('status', status.value)
             formData.append('desc', desc.value)
-            // append file input (field name must match multer config)
-            if (image.files && image.files[0]) {
-                formData.append('image', image.files[0])
-            }
+            formData.append('validade', validade.value)
+            formData.append('image', image.files[0])
 
             fetch('/produto/efetuarCadastro', {
                 method: 'POST',

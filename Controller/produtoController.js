@@ -11,16 +11,16 @@ class ProdutoController {
   }
   async efetuarCadastro(req, res) {
     try {
-      const { nome, marca, quant, preco, status, desc } = req.body || {}
+      const { nome, marca, quant, preco, status, desc, validade } = req.body || {}
       const file = req.file // multer will populate this when used in the route
 
-      if (!nome || !marca || !quant || !preco) {
+      if (!nome || !marca || !quant || !preco || !validade) {
         return res.status(400).send({ ok: false, error: 'Campos obrigatórios faltando' })
       }
 
       const imagemPath = file ? (file.filename || file.path) : null
 
-      let produto = new ProdutoModel(null, nome, marca, parseInt(quant), parseFloat(preco), imagemPath, status, desc)
+      let produto = new ProdutoModel(null, nome, marca, parseInt(quant), parseFloat(preco), imagemPath, status, desc, validade)
       let result = await produto.cadastrar()
       return res.send({ ok: result })
     } catch (err) {

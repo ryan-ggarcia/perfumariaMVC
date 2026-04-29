@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         const id = this.dataset.id
         Swal.fire({
             title: "Você deseja excluir essa coluna ?",
-            text: "Uma fez deletado não pode ser desfeito !",
+            text: "Após a exclusão, não será possível reverter!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",

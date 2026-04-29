@@ -11,8 +11,9 @@ class ProdutoModel{
     #pro_image
     #pro_status
     #pro_desc
+    #pro_validade
 
-    constructor(pro_id, pro_nome, pro_marca, pro_quant, pro_preco, pro_image, pro_status, pro_desc){
+    constructor(pro_id, pro_nome, pro_marca, pro_quant, pro_preco, pro_image, pro_status, pro_desc, pro_validade){
         this.#pro_id = pro_id
         this.#pro_nome = pro_nome
         this.#pro_marca = pro_marca
@@ -21,6 +22,7 @@ class ProdutoModel{
         this.#pro_image = pro_image
         this.#pro_status = pro_status
         this.#pro_desc = pro_desc
+        this.#pro_validade = pro_validade
     }
     get pro_id(){
         return this.#pro_id
@@ -70,19 +72,30 @@ class ProdutoModel{
     set pro_desc(value){
         this.#pro_desc = value
     }
+    get pro_validade(){
+        return this.#pro_validade
+    }
+    set pro_validade(value){
+        this.#pro_validade = value
+    }
 
     async listar(){
         let sql = "select * from produto"
         let result = await banco.ExecutaComando(sql)
         let lista = []
         for(let i = 0; i < result.length;i++){
+            let img = "/img/produtos/barra-de-imagem.png"
+            if(result[i]["pro_imagem"] != null)
+                img = CAMINHO_DA_IMAGEM + result[i]["pro_imagem"]
+
+
             let produto = new ProdutoModel(
                 result[i]["pro_id"],
                 result[i]["pro_nome"],
                 result[i]["pro_marca"],
                 result[i]["pro_quant"],
                 result[i]["pro_preco"],
-                result[i]["pro_image"],
+                img,
                 result[i]["pro_status"],
                 result[i]["pro_desc"]
             )
@@ -91,8 +104,8 @@ class ProdutoModel{
         return lista
     }
     async cadastrar(){
-        
-        let sql = "insert into produto (pro_nome,pro_marca,pro_quant,pro_preco,pro_image,pro_status,pro_desc) values (?,?,?,?,?,?,?)"
+
+        let sql = "insert into produto (pro_nome,pro_marca,pro_quant,pro_preco,pro_image,pro_status,pro_desc,pro_validade) values (?,?,?,?,?,?,?,?)"
         let valores = [
             this.#pro_nome,
             this.#pro_marca,
@@ -100,7 +113,8 @@ class ProdutoModel{
             this.#pro_preco,
             this.#pro_image,
             this.#pro_status,
-            this.#pro_desc
+            this.#pro_desc,
+            this.#pro_validade
         ]
         let result = await banco.ExecutaComandoNonQuery(sql,valores)
         return result

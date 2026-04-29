@@ -55,7 +55,23 @@ class UsuarioModel {
         this.#usu_perfil = usu_perfil
         this.#usu_perfil_desc = usu_perfil_desc
     }
-
+    async validarLogin(email,senha){
+        let sql = "select usu_email, usu_senha from usuario where usu_email = ? and usu_senha = ?"
+        let valores = [email,senha]
+        let banco = new Database()
+        let rows = await banco.ExecutaComando(sql,valores)
+        if(rows.length > 0){
+            let result = new UsuarioModel(
+            rows[0][""],
+            rows[0][""],
+            rows[0]["usu_email"],
+            rows[0]["usu_senha"],
+            rows[0][""],
+            rows[0][""]
+        )
+            return result
+        }
+    }
     async cadastrar() {
         let sql = "insert into usuario (usu_nome,usu_email,usu_senha,usu_perfil_id) values (?,?,?,?) "
         let valores = [this.#usu_nome, this.#usu_email, this.#usu_senha, this.#usu_perfil]
@@ -94,8 +110,9 @@ class UsuarioModel {
     }
     async listar() {
         let sql = `
-        select u.usu_id, u.usu_nome, u.usu_email, u.usu_senha, u.usu_perfil_id, p.des_perfil as usu_perfil_desc from usuario u
-        inner join perfil p on u.usu_perfil_id = p.id_perfil
+        select u.usu_id, u.usu_nome, u.usu_email, u.usu_senha,u.usu_perfil_id, p.per_desc
+        from usuario u
+        inner join perfil p on p.per_id = u.usu_perfil_id
        `
         let banco = new Database()
         let result = await banco.ExecutaComando(sql)
@@ -107,7 +124,7 @@ class UsuarioModel {
                 result[i]["usu_email"],
                 result[i]["usu_senha"],
                 result[i]["usu_perfil_id"],
-                result[i]["usu_perfil_desc"]
+                result[i]["per_desc"]
             )
             lista.push(usuario)
         }

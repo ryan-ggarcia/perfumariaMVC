@@ -1,8 +1,8 @@
-<h1>Listar Usuario</h1>
+<h1>Listar Produtos</h1>
 <link rel="stylesheet" href="/css/style-list.css">
 <div class="content">
   <div class="cadastrar">
-    <a href="/usuario/cadastrar">Cadastrar Usuário +</a>
+    <a href="/produto/cadastrar">Cadastrar Produto +</a>
   </div>
 </div>
 
@@ -11,11 +11,11 @@
     <thead>
       <tr>
         <th>Id</th>
+        <th>Imagem</th>
         <th>Nome</th>
         <th>Marca</th>
         <th>Quantidade(Unidade)</th>
         <th>Preço</th>
-        <th>imagem</th>
         <th>Status</th>
         <th>Descrição</th>
         <th>Ações</th>
@@ -29,6 +29,9 @@
             <%=lista[i].pro_id%>
           </td>
           <td>
+            <img src="<%=lista[i].pro_image%>" alt="<%=lista[i].pro_nome%>">
+          </td>
+          <td>
             <%=lista[i].pro_nome%>
           </td>
           <td>
@@ -38,13 +41,14 @@
             <%=lista[i].pro_quant%>
           </td>
           <td>
-            <%= lista[i].pro_preco %>
+            R$ <%= lista[i].pro_preco %>
           </td>
           <td>
-            <%=lista[i].pro_image%>
-          </td>
-          <td>
-            <%=lista[i].pro_status%>
+            <%if(lista[i].pro_status === 1){%>
+              <span>Ativo</span>
+            <%}else{%>
+              <span>Inativo</span>
+            <%}%>
           </td>
           <td>
             <%=lista[i].pro_desc%>
