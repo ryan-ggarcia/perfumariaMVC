@@ -1,0 +1,112 @@
+ <div class="lg:pl-64">
+    <header class="px-6 lg:px-10 h-20 flex items-center justify-between border-b border-border bg-background/40 backdrop-blur sticky top-0 z-20">
+      <div class="flex items-center gap-3">
+        <button id="sidebarToggle" class="lg:hidden p-2 rounded-md hover:bg-card transition" aria-label="Abrir menu">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <h2 class="font-serif text-xl">Painel Administrativo</h2>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-full bg-gradient-gold flex items-center justify-center text-primary-foreground font-semibold">Y</div>
+      </div>
+    </header>
+
+    <main class="px-6 lg:px-10 py-8 space-y-8">
+      <section class="flex items-end justify-between gap-4 flex-wrap animate-fade-up">
+        <div>
+          <h1 class="font-serif text-3xl md:text-4xl">Gestão de <span class="text-primary">Usuários</span></h1>
+          <p class="text-muted-foreground mt-2">Cadastre e gerencie acessos ao painel administrativo</p>
+        </div>
+        <button id="openModal" class="inline-flex items-center gap-2 px-4 h-10 rounded-md bg-gradient-gold text-primary-foreground font-medium hover:opacity-90 shadow-card transition-opacity">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zm10-3v6m3-3h-6"/></svg>
+          Novo Usuário
+        </button>
+      </section>
+
+      <section class="bg-card/70 backdrop-blur border border-border rounded-2xl shadow-elegant overflow-hidden animate-fade-up">
+        <div class="px-6 py-4 border-b border-border flex items-center gap-2">
+          <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6-5a4 4 0 11-8 0 4 4 0 018 0zm6 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <h2 class="font-serif text-lg">Usuários cadastrados</h2>
+          <span id="userCount" class="ml-auto text-xs text-muted-foreground"> registros</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="text-left text-muted-foreground border-b border-border">
+              <tr>
+                <th class="px-6 py-3 font-medium">E-mail</th>
+                <th class="px-6 py-3 font-medium">Perfil</th>
+                <th class="px-6 py-3 font-medium">Nascimento</th>
+                <th class="px-6 py-3 font-medium">Criado em</th>
+              </tr>
+            </thead>
+            <tbody id="userTableBody">
+              <% users.forEach(u => { %>
+                <tr class="border-b border-border/50 hover:bg-surface/40 transition">
+                  <td class="px-6 py-4 font-medium"><%= u.email %></td>
+                  <td class="px-6 py-4">
+                    <span class="inline-flex px-2.5 py-1 rounded-full text-xs border profile-<%= u.profileType %>"><%= profileLabels[u.profileType] %></span>
+                  </td>
+                  <td class="px-6 py-4 text-muted-foreground"><%= new Date(u.dob).toLocaleDateString('pt-BR') %></td>
+                  <td class="px-6 py-4 text-muted-foreground"><%= new Date(u.createdAt).toLocaleDateString('pt-BR') %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer class="pt-4 pb-2 text-center text-xs text-muted-foreground">Al-Nour Perfumaria • Painel Administrativo</footer>
+    </main>
+  </div>
+
+  <!-- Modal de cadastro -->
+  <div id="modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div class="bg-card border border-border rounded-2xl shadow-elegant w-full max-w-md p-6 animate-fade-up">
+      <div class="mb-5">
+        <h3 class="font-serif text-2xl">Cadastrar <span class="text-primary">usuário</span></h3>
+        <p class="text-sm text-muted-foreground mt-1">Preencha os dados para registrar um novo acesso.</p>
+      </div>
+      <div id="modalErrors" class="hidden mb-4 rounded-xl border border-red-500/40 bg-red-500/10 text-red-200 px-4 py-3 text-sm space-y-1"></div>
+      <form id="userForm" class="space-y-4">
+        <div class="space-y-2">
+          <label for="m-email" class="text-sm font-medium">E-mail</label>
+          <input id="m-email" name="email" type="email" required maxlength="255" placeholder="usuario@alnour.com" class="w-full px-3 h-10 rounded-md border border-border bg-surface/60 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+        </div>
+        <div class="space-y-2">
+          <label for="m-password" class="text-sm font-medium">Senha</label>
+          <div class="relative">
+            <input id="m-password" name="password" type="password" required minlength="8" maxlength="72" placeholder="Mínimo 8 caracteres" class="w-full px-3 pr-10 h-10 rounded-md border border-border bg-surface/60 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+            <button type="button" data-toggle-password="m-password" class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground" aria-label="Mostrar/ocultar senha">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="space-y-2">
+          <label for="m-dob" class="text-sm font-medium">Data de nascimento</label>
+          <input id="m-dob" name="dob" type="date" required class="w-full px-3 h-10 rounded-md border border-border bg-surface/60 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+        </div>
+        <div class="space-y-2">
+          <label for="m-profile" class="text-sm font-medium">Tipo de perfil</label>
+          <select id="m-profile" name="profileType" required class="w-full px-3 h-10 rounded-md border border-border bg-surface/60 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+            <option value="">Selecione um perfil</option>
+            <% Object.entries(profileLabels).forEach(([v, l]) => { %>
+              <option value="<%= v %>"><%= l %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" id="closeModal" class="px-4 h-10 rounded-md border border-border hover:bg-surface transition text-sm">Cancelar</button>
+          <button type="submit" class="px-4 h-10 rounded-md bg-gradient-gold text-primary-foreground font-medium hover:opacity-90 transition text-sm">Cadastrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="hidden fixed bottom-6 right-6 z-50 max-w-sm bg-card border border-border rounded-xl shadow-elegant px-4 py-3 animate-fade-up">
+    <p id="toastTitle" class="font-medium text-sm"></p>
+    <p id="toastDesc" class="text-xs text-muted-foreground mt-0.5"></p>
+  </div>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/usuScript.js"></script>

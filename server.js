@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser')
 
 //require de Instanciação
 const loginRoute = require('./Routers/loginRoute')
-const usuarioRouter = require('./Routers/usuarioRoutes')
 const adminRouter = require('./Routers/adminRoute')
 const AuthAdmin = require('./Middleware/AuthAdmin')
 
@@ -28,7 +27,6 @@ app.use('/login',loginRoute)
 let authAdmin = new AuthAdmin()
 //Middleware para validar se o usuário é admin, para acessar as rotas de admin
 app.use('/admin',authAdmin.validarAdmin)
-app.use('/usuario',usuarioRouter)
 //Middleware para layout de admin
 app.use(authAdmin.adminLayout)
 app.use('/admin',adminRouter)

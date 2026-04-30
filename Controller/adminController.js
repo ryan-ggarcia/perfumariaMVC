@@ -1,16 +1,16 @@
 const Dashboard = require('../Models/dashboardModel');
 const usuarioModel = require('../Models/usuarioModel');
-class HomeController{
+class AdminController{
     async homeAdmin(req,res){
         let data = await Dashboard.getDashboardData();
-        let usuario = new usuarioModel();
-        
-        res.render('admin/home', data);
+        // let obter = new usuarioModel()
+        let id =  req.cookies ? req.cookies.UsuarioLogado : null
+        // obter = await obter.obter(id)
+        res.render('admin/home', data, );
     }
-    // try {
-//     const data = await Dashboard.getDashboardData();
-//     res.render('dashboard', data);
-//   } catch (err) { next(err); }
+    async cadastro(req,res){
+        res.render('admin/usuario/cadastrar')
+    }
 }
 
-module.exports = HomeController
+module.exports = AdminController

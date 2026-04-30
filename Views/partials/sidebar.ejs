@@ -11,15 +11,15 @@
 
   <nav class="flex-1 px-3 py-6 space-y-1">
     <% var menu = [
-      { id:'dashboard',  label:'Dashboard',  icon:'layout-dashboard' },
-      { id:'vendas',     label:'Vendas',     icon:'shopping-bag' },
-      { id:'compras',    label:'Compras',    icon:'shopping-cart' },
-      { id:'usuarios',   label:'Usuários',   icon:'users' },
-      { id:'produtos',   label:'Produtos',   icon:'package' },
-      { id:'relatorios', label:'Relatórios', icon:'bar-chart-3' }
+      { id:'dashboard',  label:'Dashboard',  icon:'layout-dashboard', link:'/admin/home' },
+      { id:'vendas',     label:'Vendas',     icon:'shopping-bag', link:'/admin/vendas' },
+      { id:'compras',    label:'Compras',    icon:'shopping-cart', link:'/admin/compras' },
+      { id:'usuarios',   label:'Usuários',   icon:'users', link:'admin/register' },
+      { id:'produtos',   label:'Produtos',   icon:'package', link:'/admin/produtos' },
+      { id:'relatorios', label:'Relatórios', icon:'bar-chart-3', link:'/admin/relatorios' }
     ]; %>
     <% menu.forEach(function(item) { %>
-      <a href="/<%= item.id %>"
+      <a href="/<%= item.link %>"
          data-nav="<%= item.id %>"
          class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm transition-all duration-300
                 <%= active === item.id
