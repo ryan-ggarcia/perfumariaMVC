@@ -1,0 +1,40 @@
+<aside id="sidebar" class="fixed inset-y-0 left-0 w-64 flex-col bg-bg/95 border-r border-border/60 z-30 hidden lg:flex">
+  <div class="px-6 py-7 flex items-center gap-3 border-b border-border/60">
+    <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-primary to-surface2 flex items-center justify-center shadow-elegant">
+      <i class="icon-sparkles text-white"></i>
+    </div>
+    <div>
+      <h1 class="font-serif text-lg tracking-wide">Al-Nour</h1>
+      <p class="text-[10px] uppercase tracking-[0.2em] text-muted">Perfumaria Árabe</p>
+    </div>
+  </div>
+
+  <nav class="flex-1 px-3 py-6 space-y-1">
+    <% var menu = [
+      { id:'dashboard',  label:'Dashboard',  icon:'layout-dashboard' },
+      { id:'vendas',     label:'Vendas',     icon:'shopping-bag' },
+      { id:'compras',    label:'Compras',    icon:'shopping-cart' },
+      { id:'usuarios',   label:'Usuários',   icon:'users' },
+      { id:'produtos',   label:'Produtos',   icon:'package' },
+      { id:'relatorios', label:'Relatórios', icon:'bar-chart-3' }
+    ]; %>
+    <% menu.forEach(function(item) { %>
+      <a href="/<%= item.id %>"
+         data-nav="<%= item.id %>"
+         class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm transition-all duration-300
+                <%= active === item.id
+                    ? 'bg-secondary text-bg shadow-card active'
+                    : 'text-text/80 hover:bg-surface hover:translate-x-1' %>">
+        <i class="icon-<%= item.icon %>"></i>
+        <span class="font-medium"><%= item.label %></span>
+        <% if (active === item.id) { %><span class="ml-auto h-1.5 w-1.5 rounded-full bg-primary"></span><% } %>
+      </a>
+    <% }) %>
+  </nav>
+
+  <div class="p-4 border-t border-border/60">
+    <a href="/logout" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-text/80 hover:bg-red-500/15 hover:text-red-300 transition-colors duration-300">
+      <i class="icon-log-out"></i><span class="font-medium">Sair</span>
+    </a>
+  </div>
+</aside>

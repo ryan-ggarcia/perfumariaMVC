@@ -1,0 +1,26 @@
+<header class="sticky top-0 z-20 backdrop-blur bg-bg/70 border-b border-border/60">
+  <div class="flex items-center gap-4 px-6 lg:px-10 py-4">
+    <button id="menu-toggle" class="lg:hidden h-10 w-10 rounded-full bg-surface flex items-center justify-center" aria-label="Abrir menu">
+      <i class="icon-menu"></i>
+    </button>
+
+    <div class="relative flex-1 max-w-md">
+      <i class="icon-search absolute left-3 top-1/2 -translate-y-1/2 text-muted"></i>
+      <input id="search-input" type="text" placeholder="Buscar..."
+             class="w-full pl-10 pr-3 py-2.5 rounded-lg bg-surface/60 border border-border/60 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 transition" />
+    </div>
+
+    <button class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-gradient-to-r from-primary to-surface2 text-white text-sm font-medium shadow-card hover:-translate-y-0.5 transition">
+      <i class="icon-plus"></i> Novo Produto
+    </button>
+
+    <button aria-label="Notificações" class="relative h-10 w-10 rounded-full bg-surface/60 border border-border/60 flex items-center justify-center hover:bg-surface transition-colors">
+      <i class="icon-bell"></i>
+      <span class="absolute top-2 right-2 h-2 w-2 rounded-full bg-success ring-2 ring-bg"></span>
+    </button>
+
+    <div class="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-surface2 flex items-center justify-center font-semibold text-white ring-2 ring-primary/40">
+      <%= user.initials %>
+    </div>
+  </div>
+</header>

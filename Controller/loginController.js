@@ -2,22 +2,27 @@ const UsuarioModel = require("../Models/usuarioModel")
 
 class loginController {
     login(req, res) {
-        res.render('login', { layout: false})
+        res.render('login', { layout: false })
     }
-    efetuarLogin(req, res) {
+    async efetuarLogin(req, res) {
         let { email, senha } = req.body
         let msg = ""
         let ok = false
         let usuario = new UsuarioModel()
-        usuario.validarLogin(email, senha)
-        if (email && senha) {
-            if (usuario != null) {
-               res.send({ ok: true })
+        usuario = await usuario.buscarPorEmailSenha(email, senha)
+        if (usuario != undefined) {
+            if (email == usuario.usu_email && senha == usuario.usu_senha) {
+                ok = true
+                let id = usuario.usu_perfil
+                res.cookie('UsuarioLogado', usuario.usu_id)
+                return res.send({ ok: ok, perfil: id })
             } else {
-                return res.send({ msg: "Email ou senha incorretos" })
+                msg = "Email ou senha incorretos"
+                return res.send({ ok: ok, msg: msg })
             }
         } else {
-            return res.send({ msg: "Preencha todos os campos obrigatórios" })
+            msg = "Email não encontrado"
+            return res.send({ ok: ok, msg: msg })
         }
     }
 }

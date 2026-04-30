@@ -11,5 +11,6 @@ class LoginController {
         if (user) return res.send({ ok: true, user })
         return res.send({ ok: false })
     }
+    
 }
 module.exports = LoginController

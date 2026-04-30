@@ -55,26 +55,22 @@ class UsuarioModel {
         this.#usu_perfil = usu_perfil
         this.#usu_perfil_desc = usu_perfil_desc
     }
-    async validarLogin(email,senha){
-        // Deprecated: kept for backwards compatibility -> use buscarPorEmailSenha
-        return await this.buscarPorEmailSenha(email, senha)
-    }
     
     async buscarPorEmailSenha(email, senha){
-        const sql = "select usu_id, usu_nome, usu_email, usu_senha, usu_perfil_id from usuario where usu_email = ? and usu_senha = ?"
-        const valores = [email, senha]
-        const banco = new Database()
-        const rows = await banco.ExecutaComando(sql, valores)
-        if(rows && rows.length > 0){
-            return new UsuarioModel(
-                rows[0]['usu_id'],
-                rows[0]['usu_nome'],
-                rows[0]['usu_email'],
-                rows[0]['usu_senha'],
-                rows[0]['usu_perfil_id']
+        let sql = "select usu_id, usu_nome, usu_email, usu_senha, usu_perfil_id from usuario where usu_email = ? and usu_senha = ?"
+        let valores = [email,senha]
+        let banco = new Database()
+        let result = await banco.ExecutaComando(sql,valores)
+        if(result.length > 0){
+            let valida = new UsuarioModel(
+                result[0]["usu_id"],
+                result[0]["usu_nome"],
+                result[0]["usu_email"],
+                result[0]["usu_senha"],
+                result[0]["usu_perfil_id"]
             )
+            return valida
         }
-        return null
     }
     async cadastrar() {
         let sql = "insert into usuario (usu_nome,usu_email,usu_senha,usu_perfil_id) values (?,?,?,?) "
@@ -140,6 +136,24 @@ class UsuarioModel {
         let banco = new Database()
         let result = await banco.ExecutaComandoNonQuery(sql,valor)
         return result
+    }
+    async obter(id){
+        let sql = `
+            select * from usuario where usu_id = ?
+        `
+        let valor = [id]
+        let banco = new Database()
+        let result = await banco.ExecutaComando(sql,valor)
+        if(result.length > 0){
+            let usuario = new UsuarioModel(
+                result[0]["usu_id"],
+                result[0]["usu_nome"],
+                result[0]["usu_email"],
+                result[0]["usu_senha"],
+                result[0]["usu_perfil_id"]
+            )
+            return usuario
+        }
     }
 }
 
