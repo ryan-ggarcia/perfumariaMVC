@@ -39,7 +39,10 @@ document.addEventListener('DOMContentLoaded', function(e) {
                         text: 'Redirecionando para a página inicial',
                         icon: 'success'
                     }).then(() => {
-                        window.location.href = '/';
+                        if(result.perfil == 2 || result.perfil == 4)
+                            window.location.href = '/admin/home'
+                        else
+                        window.location.href = '/'
                     });
                 }else{
                     Swal.fire({

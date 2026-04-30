@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Al-Nour | Painel Administrativo</title>
+    <meta name="description"
+        content="Painel administrativo da perfumaria árabe Al-Nour: vendas, compras, produtos e relatórios." />
+
+    <!-- Tailwind CSS via CDN (com config inline) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#3a3122',
+                        surface: '#524632',
+                        surface2: '#6b5a3f',
+                        primary: '#8F7E4F',
+                        secondary: '#C3C49E',
+                        success: '#D8FFDD',
+                        border: '#6a5a3e',
+                        muted: '#a89a78',
+                        text: '#efe9d6'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif']
+                    },
+                    boxShadow: {
+                        elegant: '0 18px 40px -18px rgba(0,0,0,.6)',
+                        card: '0 8px 24px -12px rgba(0,0,0,.55)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+
+    <!-- Ícones -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@latest/font/lucide.css" />
+
+    <!-- CSS customizado -->
+    <link rel="stylesheet" href="/css/dashboard.css" />
+</head>
+
+<body class="bg-bg text-text font-sans min-h-screen">
+
+    <%- include('../partials/sidebar', { active: 'dashboard' }) %>
+
+        <div class="lg:pl-64">
+            <%- include('../partials/header', { user: user }) %>
+
+                <%- body %>
+        </div>
+
+        <!-- Dados do servidor para o JS -->
+        <script id="dashboard-data" type="application/json">
+    <%- JSON.stringify({ sales: charts.sales, purchases: charts.purchases, categories: charts.categories }) %>
+  </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="/js/dashboard.js"></script>
+</body>
+
+</html>
