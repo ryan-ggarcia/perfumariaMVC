@@ -56,21 +56,25 @@ class UsuarioModel {
         this.#usu_perfil_desc = usu_perfil_desc
     }
     async validarLogin(email,senha){
-        let sql = "select usu_email, usu_senha from usuario where usu_email = ? and usu_senha = ?"
-        let valores = [email,senha]
-        let banco = new Database()
-        let rows = await banco.ExecutaComando(sql,valores)
-        if(rows.length > 0){
-            let result = new UsuarioModel(
-            rows[0][""],
-            rows[0][""],
-            rows[0]["usu_email"],
-            rows[0]["usu_senha"],
-            rows[0][""],
-            rows[0][""]
-        )
-            return result
+        // Deprecated: kept for backwards compatibility -> use buscarPorEmailSenha
+        return await this.buscarPorEmailSenha(email, senha)
+    }
+    
+    async buscarPorEmailSenha(email, senha){
+        const sql = "select usu_id, usu_nome, usu_email, usu_senha, usu_perfil_id from usuario where usu_email = ? and usu_senha = ?"
+        const valores = [email, senha]
+        const banco = new Database()
+        const rows = await banco.ExecutaComando(sql, valores)
+        if(rows && rows.length > 0){
+            return new UsuarioModel(
+                rows[0]['usu_id'],
+                rows[0]['usu_nome'],
+                rows[0]['usu_email'],
+                rows[0]['usu_senha'],
+                rows[0]['usu_perfil_id']
+            )
         }
+        return null
     }
     async cadastrar() {
         let sql = "insert into usuario (usu_nome,usu_email,usu_senha,usu_perfil_id) values (?,?,?,?) "

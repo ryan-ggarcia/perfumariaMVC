@@ -21,7 +21,7 @@
                 <h1>Bem-vindo de volta!</h1>
                 <span>Faça login para acessar sua conta</span>
             </div>
-            <form action="/login/efetuarLogin" method="POST">
+            <form id="loginForm">
                 <div class="input-conteiner">
                     <div class="label">
                         <img src="/assets/email-icon.png" alt="">
@@ -41,7 +41,7 @@
                         <span> <%= msg %> </span>
                     <% } %>
                 </div>
-                <button type="button" id="btnLogin">Login</button>
+                <button id="btnLogin" type="button">Entrar</button>
             </form>
             <div class="login-google">
                 <button><img src="/assets/google-icon.png" alt="Google"> Entre com o google</button>
